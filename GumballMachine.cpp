@@ -2,12 +2,9 @@
 #include "GumballMachine.h"
 #include <iostream>
 
-GumballMachine::GumballMachine(int gumballs_, State* state_): 
+GumballMachine::GumballMachine(int gumballs_): 
             m_state {nullptr},
-            m_gumballs {gumballs_}
-{
-    TransitionTo(state_);
-}
+            m_gumballs {gumballs_} {}
 void GumballMachine::TransitionTo(State* state_)
 {
     if (m_state != nullptr) delete state_;

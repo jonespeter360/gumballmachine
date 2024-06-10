@@ -6,7 +6,7 @@ class State;
 class GumballMachine
 {
     public:
-        GumballMachine(int gumballs_, State* state_);
+        GumballMachine(int gumballs_);
         void TransitionTo(State* state_);
         void insertQuarter();
         void ejectQuarter();
