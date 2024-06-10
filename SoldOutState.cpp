@@ -21,3 +21,8 @@ void SoldOutState::dispense()
 {
     std::cout << "There are no gumballs to dispense\n";
 }
+
+void SoldOutState::set_context(GumballMachine* machine_)
+{
+    m_gumball_machine = machine_;
+}

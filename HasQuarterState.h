@@ -2,6 +2,7 @@
 #define __H_HAS_QUARTER_H
 
 class State;
+class GumballMachine;
 
 class HasQuarterState : public State
 {
@@ -11,6 +12,7 @@ class HasQuarterState : public State
         void ejectQuarter();
         void turnCrank();
         void dispense();
+        void set_context(GumballMachine* machine_);
     private:
         GumballMachine* m_gumball_machine;
 };

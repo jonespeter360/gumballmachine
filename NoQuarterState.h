@@ -14,6 +14,7 @@ class NoQuarterState : public State
         void ejectQuarter();
         void turnCrank();
         void dispense();
+        void set_context(GumballMachine* machine_);
 };
 
 #endif

@@ -34,3 +34,8 @@ void SoldState::dispense()
         m_gumball_machine->TransitionTo(new SoldOutState());
     }
 }
+
+void SoldState::set_context(GumballMachine* machine_)
+{
+    m_gumball_machine = machine_;
+}

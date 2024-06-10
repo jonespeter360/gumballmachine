@@ -26,3 +26,8 @@ void NoQuarterState::dispense()
 {
     std::cout << "You need to pay first\n";
 }
+
+void NoQuarterState::set_context(GumballMachine* machine_)
+{
+    m_gumball_machine = machine_;
+}

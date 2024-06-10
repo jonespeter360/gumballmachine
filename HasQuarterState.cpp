@@ -28,3 +28,8 @@ void HasQuarterState::dispense()
 {
     std::cout << "No gumball dispensed\n";
 }
+
+void HasQuarterState::set_context(GumballMachine* machine_)
+{
+    m_gumball_machine = machine_;
+}
