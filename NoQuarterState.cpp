@@ -2,11 +2,9 @@
 #include "GumballMachine.h"
 #include "NoQuarterState.h"
 #include "HasQuarterState.h"
+#include <iostream>
 
-NoQuarterState::NoQuarterState(GumballMachine* machine_): m_gumball_machine { nullptr}
-{
-    m_gumball_machine = machine_;
-}
+NoQuarterState::NoQuarterState(): m_gumball_machine { nullptr } {}
 
 void NoQuarterState::insertQuarter()
 {

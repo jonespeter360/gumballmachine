@@ -9,7 +9,7 @@ class NoQuarterState : public State
     private:
         GumballMachine* m_gumball_machine;
     public:
-        NoQuarterState(GumballMachine* machine_);
+        NoQuarterState();
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();

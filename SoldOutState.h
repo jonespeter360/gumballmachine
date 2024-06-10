@@ -9,11 +9,11 @@ class SoldOutState : public State
     private:
         GumballMachine* m_gumball_machine;
     public:
-        SoldOutState(GumballMachine* machine_);
+        SoldOutState();
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();
-        void dispense()
+        void dispense();
 };
 
 #endif

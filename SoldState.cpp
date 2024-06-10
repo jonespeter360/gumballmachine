@@ -1,4 +1,13 @@
-SoldState::SoldState(GumballMachine* machine_): m_gumball_machine {machine_} {};
+#include "State.h"
+#include "GumballMachine.h"
+#include "SoldState.h"
+#include "SoldOutState.h"
+#include "NoQuarterState.h"
+#include <iostream>
+
+
+
+SoldState::SoldState(): m_gumball_machine {nullptr} {};
 
 void SoldState::insertQuarter()
 {
@@ -15,7 +24,7 @@ void SoldState::turnCrank()
 void SoldState::dispense()
 {
     m_gumball_machine->releaseBall();
-    if (m_gumball_machine->getCount() > 0)
+    if (m_gumball_machine->count() > 0)
     {
         m_gumball_machine->TransitionTo(new NoQuarterState());
     }

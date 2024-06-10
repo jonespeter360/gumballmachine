@@ -6,7 +6,7 @@ class State;
 class HasQuarterState : public State
 {
     public:
-        HasQuarterState(GumballMachine* machine_);
+        HasQuarterState();
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();

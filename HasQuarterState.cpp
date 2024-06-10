@@ -5,7 +5,7 @@
 #include "HasQuarterState.h"
 #include <iostream>
 
-HasQuarterState::HasQuarterState(GumballMachine* machine_): m_gumball_machine { machine_ } {}
+HasQuarterState::HasQuarterState(): m_gumball_machine { nullptr } {}
 
 void HasQuarterState::insertQuarter()
 {
@@ -20,7 +20,7 @@ void HasQuarterState::ejectQuarter()
 
 void HasQuarterState::turnCrank()
 {
-    std::cout << "You turned but there's no quarter\n";
+    std::cout << "Turned the crank...\n";
     m_gumball_machine->TransitionTo(new SoldState());
 }
 

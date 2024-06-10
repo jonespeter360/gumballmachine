@@ -9,7 +9,7 @@ class SoldState : public State
     private:
         GumballMachine* m_gumball_machine;
     public:
-        SoldState(GumballMachine* machine_);
+        SoldState();
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();

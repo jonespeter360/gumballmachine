@@ -1,8 +1,9 @@
 #include "State.h"
 #include "GumballMachine.h"
 #include "SoldOutState.h"
+#include <iostream>
 
-SoldOutState::SoldOutState(GumballMachine* machine_): m_gumball_machine {machine_} {}
+SoldOutState::SoldOutState(): m_gumball_machine {nullptr } {}
 
 void SoldOutState::insertQuarter()
 {
