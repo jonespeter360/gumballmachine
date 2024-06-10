@@ -1,132 +1,128 @@
 #include "main.h"
 
-enum States
+//enum States
+//{
+//    SOLD_OUT = 0,
+//    NO_QUARTER = 1,
+//    HAS_QUARTER = 2,
+//    SOLD = 4
+//};
+
+class GumballMachine;
+
+class State
 {
-    SOLD_OUT = 0,
-    NO_QUARTER = 1,
-    HAS_QUARTER = 2,
-    SOLD = 4
+    protected:
+        GumballMachine* m_context;
+    public:
+        virtual void insertQuarter() = 0;
+        virtual void ejectQuarter() = 0;
+        virtual void turnCrank() = 0;
+        virtual void dispense() = 0;
+        void set_context(GumballMachine* machine_)
+        {
+            m_context = machine_;
+        }
+        virtual ~State();
 };
 
-class NaiveGumballMachine
+
+class GumballMachine
 {
     public:
-        NaiveGumballMachine(int count);
-        void insertQuarter();
-        void ejectQuarter();
-        void turnCrank();
-        void dispense();
+        GumballMachine(int gumballs_, State* state_): 
+            m_state {nullptr},
+            m_gumballs {gumballs_}
+        {
+            TransitionTo(state_);
+        }
+        void TransitionTo(State* state_)
+        {
+            if (m_state != nullptr) delete state_;
+            m_state = state_;
+            m_state->set_context(this);
+        }
+        void insertQuarter()
+        {
+            m_state->insertQuarter();
+        }
+        void ejectQuarter()
+        {
+            m_state->ejectQuarter();
+        }
+        void turnCrank()
+        {
+            m_state->turnCrank();
+        }
+        void dispense()
+        {
+            m_state->dispense();
+        }
     private:
-        int state;
-        int count; //of gumballs
+        State* m_state;
+        int m_gumballs;
 };
 
-NaiveGumballMachine::NaiveGumballMachine(int count_)
+class HasQuarterState : public State
 {
-    count = count_;
-    if (count > 0)
-    {
-        state = NO_QUARTER;
-    }
-}
+    public:
+        HasQuarterState(GumballMachine* machine_): m_gumball_machine { machine_ } {}
+        void insertQuarter()
+        {
+            std::cout << "You can't insert another quarter: there's already one in the slot\n";
+        }
+        void ejectQuarter()
+        {
+            std::cout << "You ejected a quarter\n";
+            m_gumball_machine->TransitionTo(new NoQuarterState());
+        }
+        void turnCrank()
+        {
+            std::cout << "You turned but there's no quarter\n";
+            m_gumball_machine->TransitionTo(new SoldState());
+        }
+        void dispense()
+        {
+            std::cout << "No gumball dispensed\n";
+        }
 
-void NaiveGumballMachine::insertQuarter()
-{
-    switch (state)
-    {
-    case HAS_QUARTER:
-        std::cout << "You can't insert another quarter\n";
-        break;
-    case NO_QUARTER:
-        std::cout << "You inserted a quarter\n";
-        state = HAS_QUARTER;
-        break;
-    case SOLD_OUT:
-            std::cout << "You can't insert a quarter; the machine is sold out\n";
-        break;
-    case SOLD:
-        std::cout << "Please wait, we're getting your gumball ready now\n";
-        break;
-    }
-}
+    private:
+        GumballMachine* m_gumball_machine;
 
-void NaiveGumballMachine::ejectQuarter()
+
+};
+
+
+class NoQuarterState : public State
 {
-    switch (state)
-    {
-    case HAS_QUARTER:
-        std::cout << "Quarter returned\n";
-        state = NO_QUARTER;
-        break;
-    case NO_QUARTER:
+    private:
+        GumballMachine* m_gumball_machine;
+    public:
+        NoQuarterState(GumballMachine* machine_): m_gumball_machine { nullptr}
+        {
+            m_gumball_machine = machine_;
+        }
+        void insertQuarter()
+        {
+            std::cout << "You inserted a quarter\n";
+            m_gumball_machine->TransitionTo(new HasQuarterState());
+        }
+        void ejectQuarter()
+        {
             std::cout << "You haven't inserted a quarter\n";
-        break;
-    case SOLD_OUT:
-            std::cout << "You can't eject, you haven't inserted a quarter yet\n";
-        break;
-    case SOLD:
-        std::cout << "Sorry you already turned the crank\n";
-        break;
-    } 
-}
-
-void NaiveGumballMachine::turnCrank()
-{
-    switch (state)
-    {
-    case SOLD:
-        std::cout << "Turning twice doesn't get you another gumball\n";
-        break;
-    case NO_QUARTER:
-        std::cout << "You've turned but there's no quarter\n";
-        break;
-    case SOLD_OUT:
-        std::cout << "You turned but there are no gumballs.\n";
-        break;
-    case HAS_QUARTER:
-        std::cout << "You've turned the crank...\n";
-        state = SOLD;
-        dispense();
-        break;
-    } 
-}
-
-void NaiveGumballMachine::dispense()
-{
-    switch (state)
-    {
-    case SOLD:
-        std::cout << "A gumball comes rolling out of the slot.\n";
-        count -= 1;
-        if (count == 0) 
-        {
-            std::cout << "The machine is now out of gumballs!\n";
-            state = SOLD_OUT;
         }
-        else
+        void turnCrank()
         {
-            state = NO_QUARTER;
+            std::cout << "You turned but there's no quarter\n";
         }
-        break;
-    case NO_QUARTER:
-        std::cout << "You need to pay first\n";
-        break;
-    case SOLD_OUT:
-        std::cout << "No gumball dispensed\n";
-        break;
-    case HAS_QUARTER:
-        std::cout << "No gumball dispensed\n";
-        break;
-    } 
-}
+        void dispense()
+        {
+            std::cout << "You need to pay first\n";
+        }
+};
 
 
 int main()
 {	
-
-    NaiveGumballMachine simple(3);
-    simple.insertQuarter();
-    simple.ejectQuarter();
 	return 0;
-
-};
+}
