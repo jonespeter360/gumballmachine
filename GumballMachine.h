@@ -11,7 +11,6 @@ class GumballMachine
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();
-        void dispense();
         void releaseBall();
         int count();
     private:

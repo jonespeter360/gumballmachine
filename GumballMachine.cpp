@@ -1,15 +1,23 @@
 #include "State.h"
 #include "GumballMachine.h"
+#include "NoQuarterState.h"
 #include <iostream>
 
 GumballMachine::GumballMachine(int gumballs_): 
             m_state {nullptr},
-            m_gumballs {gumballs_} {}
+            m_gumballs {gumballs_}
+{
+    if (m_gumballs > 0)
+    {
+       TransitionTo(new NoQuarterState());
+    }
+}
+
 void GumballMachine::TransitionTo(State* state_)
 {
-    if (m_state != nullptr) delete state_;
+    if (m_state != nullptr) delete m_state;
     m_state = state_;
-    m_state->set_context(this);
+    state_->set_context(this);
 }
 void GumballMachine::insertQuarter()
 {
@@ -22,9 +30,6 @@ void GumballMachine::ejectQuarter()
 void GumballMachine::turnCrank()
 {
     m_state->turnCrank();
-}
-void GumballMachine::dispense()
-{
     m_state->dispense();
 }
 

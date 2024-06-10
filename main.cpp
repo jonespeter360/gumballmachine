@@ -3,6 +3,32 @@
 
 int main()
 {	
-    GumballMachine(3);
+    GumballMachine g1 {5};
+
+    std::cout << "TEST #1:\n\n\n";
+    g1.insertQuarter();
+    g1.turnCrank();
+
+    std::cout << "TEST #2:\n\n\n";
+    g1.insertQuarter();
+    g1.ejectQuarter();
+    g1.turnCrank();
+
+    std::cout << "TEST #3:\n\n\n";
+    g1.insertQuarter();
+    g1.turnCrank();
+    g1.insertQuarter();
+    g1.turnCrank();
+    g1.ejectQuarter();
+
+    std::cout << "TEST #4:\n\n\n";
+    g1.insertQuarter();
+    g1.insertQuarter();
+    g1.turnCrank();
+    g1.insertQuarter();
+    g1.turnCrank();
+    g1.insertQuarter();
+    g1.turnCrank();
+
 	return 0;
 }
