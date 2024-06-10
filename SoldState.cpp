@@ -5,8 +5,6 @@
 #include "NoQuarterState.h"
 #include <iostream>
 
-
-
 SoldState::SoldState(): m_gumball_machine {nullptr} {};
 
 void SoldState::insertQuarter()
@@ -39,3 +37,8 @@ void SoldState::set_context(GumballMachine* machine_)
 {
     m_gumball_machine = machine_;
 }
+
+SoldState::~SoldState()
+{
+    m_gumball_machine = nullptr;
+};

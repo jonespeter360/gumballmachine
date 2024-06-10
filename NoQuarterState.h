@@ -6,15 +6,16 @@ class GumballMachine;
 
 class NoQuarterState : public State
 {
-    private:
-        GumballMachine* m_gumball_machine;
     public:
         NoQuarterState();
+        ~NoQuarterState();
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();
         void dispense();
         void set_context(GumballMachine* machine_);
+    private:
+        GumballMachine* m_gumball_machine;
 };
 
 #endif

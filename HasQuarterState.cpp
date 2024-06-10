@@ -33,3 +33,8 @@ void HasQuarterState::set_context(GumballMachine* machine_)
 {
     m_gumball_machine = machine_;
 }
+
+HasQuarterState::~HasQuarterState()
+{
+    m_gumball_machine = nullptr;
+};

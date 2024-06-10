@@ -6,15 +6,16 @@ class GumballMachine;
 
 class SoldOutState : public State
 {
-    private:
-        GumballMachine* m_gumball_machine;
     public:
         SoldOutState();
+        ~SoldOutState();
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();
         void dispense();
         void set_context(GumballMachine* machine_);
+    private:
+        GumballMachine* m_gumball_machine;
 };
 
 #endif

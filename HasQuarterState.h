@@ -8,6 +8,7 @@ class HasQuarterState : public State
 {
     public:
         HasQuarterState();
+        ~HasQuarterState();
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();

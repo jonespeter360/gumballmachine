@@ -11,7 +11,7 @@ class State
         virtual void turnCrank() = 0;
         virtual void dispense() = 0;
         virtual void set_context(GumballMachine* machine_) = 0;
-        virtual ~State();
+        virtual ~State() = 0;
 };
 
 #endif

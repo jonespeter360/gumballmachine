@@ -26,3 +26,8 @@ void SoldOutState::set_context(GumballMachine* machine_)
 {
     m_gumball_machine = machine_;
 }
+
+SoldOutState::~SoldOutState()
+{
+    m_gumball_machine = nullptr;
+};

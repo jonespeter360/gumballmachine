@@ -31,3 +31,8 @@ void NoQuarterState::set_context(GumballMachine* machine_)
 {
     m_gumball_machine = machine_;
 }
+
+NoQuarterState::~NoQuarterState()
+{
+    m_gumball_machine = nullptr;
+};
