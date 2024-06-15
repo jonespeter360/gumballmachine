@@ -12,9 +12,29 @@ enum States
     WINNER_STATE = 16
 };
 
+struct data;
 class GumballMachine;
 
-struct data;
+template<typename T>
+class StateTemp
+{
+    public:
+        StateTemp() {};
+        void insertQuarter(data&) {};
+        void ejectQuarter(data&) {};
+        void turnCrank(data&) {};
+        void dispense(data&) {};
+        void set_context(T* context_) {m_ptr = context_; };
+        int get_name() {return m_name;};
+        ~StateTemp() {};
+    private:
+        int m_name;
+        T* m_ptr;
+};
+
+StateTemp<GumballMachine*> HasQuarterStateTemp;
+
+HasQuarterStateTemp::HasQuarterStateTemp() { m_name = HAS_QUARTER_STATE; };
 
 class State
 {
