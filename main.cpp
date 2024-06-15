@@ -3,7 +3,7 @@
 
 int main()
 {	
-    GumballMachine_API* g1 {new GumballMachine {5} };
+    GumballMachine_API* g1 { new GumballMachine {5} };
 
     g1->Initialize();
     std::cout << "TEST #1:\n\n\n";
@@ -31,7 +31,7 @@ int main()
     g1->insertQuarter();
     g1->turnCrank();
 
-    GumballMachine_API* g2 {new GumballMachine {14} };
+    GumballMachine_API* g2 { new GumballMachine {14} };
     g2->Initialize();
 
     for (int i = 0; i < 12; i++)
