@@ -15,6 +15,11 @@ GumballMachine::GumballMachine(int gumballs_):
     m_states.reserve(DEFAULT_STATES);
 }
 
+GumballMachine::~GumballMachine()
+{
+    if (m_state != nullptr) m_state = nullptr;
+}
+
 void GumballMachine::TransitionTo(int state_)
 {
     if (m_state == nullptr) init();

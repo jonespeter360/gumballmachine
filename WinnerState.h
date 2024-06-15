@@ -9,13 +9,12 @@ class WinnerState : public State
 {
     public:
         WinnerState();
+        ~WinnerState() {};
         void insertQuarter(data&);
         void ejectQuarter(data&);
         void turnCrank(data&);
         void dispense(data&);
-
         void set_context(GumballMachine* machine_);
-        ~WinnerState() {};
         int get_name();
     private:
         GumballMachine* m_gumball_machine;

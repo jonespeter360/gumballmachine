@@ -2,6 +2,7 @@
 #define __H_NO_QUARTER_H
 
 class State;
+
 class GumballMachine;
 
 class NoQuarterState : public State

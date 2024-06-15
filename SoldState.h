@@ -2,6 +2,7 @@
 #define __H_SOLD_STATE_H
 
 class State;
+
 class GumballMachine;
 
 class SoldState : public State

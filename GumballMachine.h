@@ -15,6 +15,7 @@ class GumballMachine
 {
     public:
         GumballMachine(int gumballs_);
+        ~GumballMachine();
         void Initialize();
         void insertQuarter();
         void ejectQuarter();
