@@ -11,7 +11,7 @@ run: all
 
 # builds the executable
 all: build
-	@g++ -fPIC -Wall -Wextra -Werror -std=c++11 -o $(EXE) *.o #2> $(LOG)
+	@g++ -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -std=c++11 -o $(EXE) *.o #2> $(LOG)
 
 # debugs the executable
 debug: all
@@ -19,7 +19,7 @@ debug: all
 	
 # creates the object files
 build:
-	@g++ -fPIC -Wall -Wextra -Werror -std=c++11 -g -c *.cpp #2> $(LOG)
+	@g++ -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -std=c++11 -g -c *.cpp #2> $(LOG)
 
 # cleans out the object files
 clean: 

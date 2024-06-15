@@ -15,17 +15,14 @@ class GumballMachine
 {
     public:
         GumballMachine(int gumballs_);
-        void TransitionTo(int state_);
+        void Initialize();
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();
         void releaseBall();
-        int count();
-        int winner_count();
-        void set_winner_count(int in_);
-        void init();
+        void TransitionTo(int state_);
     private:
-        void Initialize();
+        void init();
         State* m_state;
         data m_data;
         std::vector<State*> m_states;

@@ -14,13 +14,15 @@ enum States
 
 class GumballMachine;
 
+struct data;
+
 class State
 {
     public:
-        virtual void insertQuarter() = 0;
-        virtual void ejectQuarter() = 0;
-        virtual void turnCrank() = 0;
-        virtual void dispense() = 0;
+        virtual void insertQuarter(data&) = 0;
+        virtual void ejectQuarter(data&) = 0;
+        virtual void turnCrank(data&) = 0;
+        virtual void dispense(data&) = 0;
         virtual void set_context(GumballMachine* machine_) = 0;
         virtual int get_name() = 0;
         virtual ~State() {};

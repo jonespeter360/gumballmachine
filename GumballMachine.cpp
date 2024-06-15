@@ -17,7 +17,7 @@ GumballMachine::GumballMachine(int gumballs_):
 
 void GumballMachine::TransitionTo(int state_)
 {
-    if (m_state == nullptr) Initialize();
+    if (m_state == nullptr) init();
 
     if (!(m_state->get_name() & state_))
     {
@@ -32,43 +32,29 @@ void GumballMachine::TransitionTo(int state_)
 }
 void GumballMachine::insertQuarter()
 {
-    m_state->insertQuarter();
+    m_state->insertQuarter(m_data);
 }
 void GumballMachine::ejectQuarter()
 {
-    m_state->ejectQuarter();
+    m_state->ejectQuarter(m_data);
 }
 void GumballMachine::turnCrank()
 {
-    m_state->turnCrank();
-    m_state->dispense();
+    m_state->turnCrank(m_data);
+    m_state->dispense(m_data);
 }
 
 void GumballMachine::releaseBall()
 {
     std::cout << "A ball comes rolling out the slot!\n";
-    if (count() != 0)
+    if (m_data.gumballs != 0)
     {
         m_data.gumballs -= 1;
     }
 }
 
-int GumballMachine::count()
-{
-    return m_data.gumballs;
-}
 
-int GumballMachine::winner_count()
-{
-    return m_data.winner_count;
-}
-
-void GumballMachine::set_winner_count(int in_)
-{
-    m_data.winner_count = in_;    
-}
-
-void GumballMachine::init()
+void GumballMachine::Initialize()
 {
     m_states.emplace_back(new HasQuarterState());
     m_states.emplace_back(new NoQuarterState());
@@ -82,7 +68,7 @@ void GumballMachine::init()
     }
 }
 
-void GumballMachine::Initialize()
+void GumballMachine::init()
 {
     m_state = m_states[0];
 }

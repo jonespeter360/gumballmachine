@@ -9,10 +9,10 @@ class SoldState : public State
     public:
         SoldState();
         ~SoldState();
-        void insertQuarter();
-        void ejectQuarter();
-        void turnCrank();
-        void dispense();
+        void insertQuarter(data&);
+        void ejectQuarter(data&);
+        void turnCrank(data&);
+        void dispense(data&);
         void set_context(GumballMachine* machine_);
         int get_name();
     private:

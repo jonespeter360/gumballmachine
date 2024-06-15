@@ -5,7 +5,7 @@ int main()
 {	
     GumballMachine g1 {5};
 
-    g1.init();
+    g1.Initialize();
     std::cout << "TEST #1:\n\n\n";
     g1.insertQuarter();
     g1.turnCrank();
@@ -32,7 +32,7 @@ int main()
     g1.turnCrank();
 
     GumballMachine g2 {14};
-    g2.init();
+    g2.Initialize();
 
     for (int i = 0; i < 12; i++)
     {

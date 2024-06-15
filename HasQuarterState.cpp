@@ -9,45 +9,44 @@
 HasQuarterState::HasQuarterState(): m_gumball_machine { nullptr },
                                     m_name {States::HAS_QUARTER_STATE} {}
 
-void HasQuarterState::insertQuarter()
+void HasQuarterState::insertQuarter(data& data_)
 {
     std::cout << "You can't insert another quarter: there's already one in the slot\n";
 }
 
-void HasQuarterState::ejectQuarter()
+void HasQuarterState::ejectQuarter(data& data_)
 {
     std::cout << "You ejected a quarter\n";
     m_gumball_machine->TransitionTo(States::NO_QUARTER_STATE);
 }
 
-void HasQuarterState::turnCrank()
+void HasQuarterState::turnCrank(data& data_)
 {
     std::cout << "Turned the crank...\n";
-    if (m_gumball_machine->winner_count() == 10)
+    if (data_.winner_count == 10)
     {
         std::cout << "You are a winner! If there are enough gumballs, you'll get two for the price of one!\n";
-        if (m_gumball_machine->count() > 1)
+        if (data_.gumballs > 1)
         {
             std::cout << "Because there are at least two gumballs, you'll get two!";
-            m_gumball_machine->set_winner_count(0);
+            data_.winner_count = 0;
             m_gumball_machine->TransitionTo(States::WINNER_STATE);
         }
         else
         {
             std::cout << "There aren't two gumballs: you only get one :<( Try again next time!\n";
-            m_gumball_machine->set_winner_count(m_gumball_machine->winner_count() + 1);
+            ++data_.winner_count;
             m_gumball_machine->TransitionTo(States::SOLD_STATE);
         }
     }
     else
     {
-        int cur_count {m_gumball_machine->winner_count()};
-        m_gumball_machine->set_winner_count(cur_count + 1 );
+        ++data_.winner_count;
         m_gumball_machine->TransitionTo(States::SOLD_STATE);
     }
 }
 
-void HasQuarterState::dispense()
+void HasQuarterState::dispense(data& data_)
 {
     std::cout << "No gumball dispensed\n";
 }

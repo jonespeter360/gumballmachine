@@ -7,22 +7,22 @@
 
 SoldState::SoldState(): m_gumball_machine {nullptr},
                         m_name {States::SOLD_STATE} {}
-void SoldState::insertQuarter()
+void SoldState::insertQuarter(data& data_)
 {
     std::cout << "You can't insert a quarter until after your gumball is dispensed.\n";
 }
-void SoldState::ejectQuarter()
+void SoldState::ejectQuarter(data& data_)
 {
     std::cout << "Sorry, you already turned the crank!\n";
 }
-void SoldState::turnCrank()
+void SoldState::turnCrank(data& data_)
 {
     std::cout << "Please wait until your gumball is dispensed.\n";
 }
-void SoldState::dispense()
+void SoldState::dispense(data& data_)
 {
     m_gumball_machine->releaseBall();
-    if (m_gumball_machine->count() > 0)
+    if ((data_.gumballs) > 0)
     {
         m_gumball_machine->TransitionTo(States::NO_QUARTER_STATE);
     }

@@ -8,30 +8,30 @@
 WinnerState::WinnerState() : m_gumball_machine {nullptr},
                              m_name {States::WINNER_STATE} {}
 
-void WinnerState::insertQuarter()
+void WinnerState::insertQuarter(data& data_)
 {
     std::cout << "Err";
 }
 
-void WinnerState::ejectQuarter()
+void WinnerState::ejectQuarter(data& data_)
 {
     std::cout << "Err";
 }
 
-void WinnerState::turnCrank()
+void WinnerState::turnCrank(data& data_)
 {
     std::cout << "Err";
 }
 
-void WinnerState::dispense()
+void WinnerState::dispense(data& data_)
 {
-    if (m_gumball_machine->count() == 0)
+    if (data_.gumballs == 0)
     {
         m_gumball_machine->TransitionTo(States::SOLD_OUT_STATE);
     }
     else
     {
-        if (m_gumball_machine->count() > 0) 
+        if (data_.gumballs > 0) 
         {
             m_gumball_machine->releaseBall();
             m_gumball_machine->TransitionTo(States::NO_QUARTER_STATE);
