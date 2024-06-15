@@ -4,13 +4,13 @@
 #include "HasQuarterState.h"
 #include <iostream>
 
-NoQuarterState::NoQuarterState(): m_gumball_machine { nullptr }
+NoQuarterState::NoQuarterState(): m_gumball_machine { nullptr },
                                   m_name {States::NO_QUARTER_STATE} {}
 
 void NoQuarterState::insertQuarter()
 {
     std::cout << "You inserted a quarter\n";
-    m_gumball_machine->TransitionTo(new HasQuarterState());
+    m_gumball_machine->TransitionTo(States::HAS_QUARTER_STATE);
 }
 
 void NoQuarterState::ejectQuarter()
@@ -37,3 +37,5 @@ NoQuarterState::~NoQuarterState()
 {
     m_gumball_machine = nullptr;
 };
+
+int NoQuarterState::get_name() { return m_name; };

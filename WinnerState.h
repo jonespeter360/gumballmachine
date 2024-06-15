@@ -15,9 +15,10 @@ class WinnerState : public State
         void dispense();
         void set_context(GumballMachine* machine_);
         ~WinnerState() {};
-        int m_name;
+        int get_name();
     private:
         GumballMachine* m_gumball_machine;
+        int m_name;
 };
 
 #endif

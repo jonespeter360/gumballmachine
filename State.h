@@ -3,7 +3,7 @@
 
 constexpr short int DEFAULT_STATES {5};
 
-enum class States
+enum States
 {
     HAS_QUARTER_STATE = 0,
     NO_QUARTER_STATE = 1,
@@ -22,6 +22,7 @@ class State
         virtual void turnCrank() = 0;
         virtual void dispense() = 0;
         virtual void set_context(GumballMachine* machine_) = 0;
+        virtual int get_name() = 0;
         virtual ~State() {};
 };
 

@@ -14,6 +14,7 @@ class SoldState : public State
         void turnCrank();
         void dispense();
         void set_context(GumballMachine* machine_);
+        int get_name();
     private:
         GumballMachine* m_gumball_machine;
         int m_name;

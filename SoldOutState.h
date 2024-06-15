@@ -14,9 +14,10 @@ class SoldOutState : public State
         void turnCrank();
         void dispense();
         void set_context(GumballMachine* machine_);
-        int m_name;
+        int get_name();
     private:
         GumballMachine* m_gumball_machine;
+        int m_name;
 };
 
 #endif
