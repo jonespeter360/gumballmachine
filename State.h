@@ -22,13 +22,13 @@ class StateTemp
 {
     public:
         StateTemp() { m_name = STATE; };
-        void insertQuarter(data&) {};
-        void ejectQuarter(data&) {};
-        void turnCrank(data&) {};
-        void dispense(data&) {};
+        virtual void insertQuarter(data&) = 0;
+        virtual void ejectQuarter(data&)  = 0;
+        virtual void turnCrank(data&)  =  0;
+        virtual void dispense(data&)  = 0;
         void set_context(GumballMachine* context_) { m_ptr = context_; };
         int get_name() {return m_name;};
-        ~StateTemp() {};
+        virtual ~StateTemp() {};
     private:
         int m_name;
         GumballMachine* m_ptr;
@@ -39,6 +39,8 @@ void StateTemp<SOLD_STATE>::insertQuarter(data& data_)
 {
     std::cout << "You can't insert a quarter until after your gumball is dispensed.\n";
 }
+
+class SoldStateTemp : public StateTemp<SOLD_STATE> {};
 
 class State
 {
