@@ -1,6 +1,8 @@
 #ifndef __H_STATE_H
 #define __H_STATE_H
 
+#include <iostream>
+
 constexpr short int DEFAULT_STATES {5};
 
 enum States
@@ -15,26 +17,28 @@ enum States
 struct data;
 class GumballMachine;
 
-template<typename T>
+template<const int STATE>
 class StateTemp
 {
     public:
-        StateTemp() {};
+        StateTemp() { m_name = STATE; };
         void insertQuarter(data&) {};
         void ejectQuarter(data&) {};
         void turnCrank(data&) {};
         void dispense(data&) {};
-        void set_context(T* context_) {m_ptr = context_; };
+        void set_context(GumballMachine* context_) { m_ptr = context_; };
         int get_name() {return m_name;};
         ~StateTemp() {};
     private:
         int m_name;
-        T* m_ptr;
+        GumballMachine* m_ptr;
 };
 
-StateTemp<GumballMachine*> HasQuarterStateTemp;
-
-HasQuarterStateTemp::HasQuarterStateTemp() { m_name = HAS_QUARTER_STATE; };
+template<>
+void StateTemp<SOLD_STATE>::insertQuarter(data& data_)
+{
+    std::cout << "You can't insert a quarter until after your gumball is dispensed.\n";
+}
 
 class State
 {
