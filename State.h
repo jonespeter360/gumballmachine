@@ -5,11 +5,11 @@ constexpr short int DEFAULT_STATES {5};
 
 enum States
 {
-    HAS_QUARTER_STATE = 0,
-    NO_QUARTER_STATE = 1,
-    SOLD_OUT_STATE = 2,
-    SOLD_STATE = 4,
-    WINNER_STATE = 8
+    HAS_QUARTER_STATE = 1,
+    NO_QUARTER_STATE = 2,
+    SOLD_OUT_STATE = 4,
+    SOLD_STATE = 8,
+    WINNER_STATE = 16
 };
 
 class GumballMachine;

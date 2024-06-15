@@ -19,6 +19,7 @@ class GumballMachine
         void set_winner_count(int in_);
         void init();
     private:
+        void Initialize();
         State* m_state;
         int m_gumballs;
         int m_winner_count;

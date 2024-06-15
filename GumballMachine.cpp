@@ -18,6 +18,8 @@ GumballMachine::GumballMachine(int gumballs_):
 
 void GumballMachine::TransitionTo(int state_)
 {
+    if (m_state == nullptr) Initialize();
+
     if (!(m_state->get_name() & state_))
     {
         for (auto state : m_states)
@@ -25,6 +27,7 @@ void GumballMachine::TransitionTo(int state_)
             if (!(state->get_name() & state_)) continue;
             m_state = state;
             m_state->set_context(this);
+            break;
         }
     }
 }
@@ -78,4 +81,9 @@ void GumballMachine::init()
     {
        TransitionTo(States::NO_QUARTER_STATE);
     }
+}
+
+void GumballMachine::Initialize()
+{
+    m_state = m_states[0];
 }
