@@ -3,7 +3,7 @@
 
 #include <vector>
 
-class State;
+class BaseState;
 
 struct data
 {
@@ -24,9 +24,9 @@ class GumballMachine
         void TransitionTo(int state_);
     private:
         void init();
-        State* m_state;
+        BaseState* m_state;
         data m_data;
-        std::vector<State*> m_states;
+        std::vector<BaseState*> m_states;
 };
 
 #endif

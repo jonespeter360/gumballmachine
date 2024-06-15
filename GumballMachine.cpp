@@ -1,10 +1,5 @@
 #include "State.h"
 #include "GumballMachine.h"
-#include "HasQuarterState.h"
-#include "NoQuarterState.h"
-#include "SoldOutState.h"
-#include "SoldState.h"
-#include "WinnerState.h"
 #include <iostream>
 
 GumballMachine::GumballMachine(int gumballs_): 
@@ -61,11 +56,11 @@ void GumballMachine::releaseBall()
 
 void GumballMachine::Initialize()
 {
-    m_states.emplace_back(new HasQuarterState());
-    m_states.emplace_back(new NoQuarterState());
-    m_states.emplace_back(new SoldOutState());
-    m_states.emplace_back(new SoldState());
-    m_states.emplace_back(new WinnerState());
+    m_states.emplace_back(new State<HAS_QUARTER_STATE>());
+    m_states.emplace_back(new State<NO_QUARTER_STATE>());
+    m_states.emplace_back(new State<SOLD_OUT_STATE>());
+    m_states.emplace_back(new State<SOLD_STATE>());
+    m_states.emplace_back(new State<WINNER_STATE>());
 
     if (m_data.gumballs > 0)
     {
