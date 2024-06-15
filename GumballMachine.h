@@ -20,6 +20,8 @@ class GumballMachine
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();
+        void restock(int);
+        void reload(int);
         void TransitionTo(int state_);
         void releaseBall();
     private:

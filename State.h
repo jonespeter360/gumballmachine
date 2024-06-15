@@ -23,6 +23,7 @@ class State_If
         virtual void ejectQuarter(data&)  = 0;
         virtual void turnCrank(data&)  =  0;
         virtual void dispense(data&)  = 0;
+        virtual void restock(data&,int)  = 0;
         virtual void set_context(GumballMachine* context_) = 0;
         virtual int get_name() = 0;
         virtual ~State_If() {};
@@ -38,6 +39,7 @@ class State : public State_If
         virtual void ejectQuarter(data&) {};
         virtual void turnCrank(data&)  {};
         virtual void dispense(data&)  {};
+        virtual void restock(data&,int)  {};
         virtual void set_context(GumballMachine* context_) { m_gumball_machine = context_; };
         virtual int get_name() { return m_name; };
         ~State() { m_gumball_machine = nullptr; }
@@ -93,6 +95,20 @@ void State<SOLD_OUT_STATE>::dispense(data& data_)
     std::cout << "There are no gumballs to dispense\n";
 }
 
+template<>
+void State<SOLD_OUT_STATE>::restock(data& data_, int gumballs_)
+{
+    std::cout << "You're adding " << gumballs_ << " to the (empty) machine.\n";
+    m_gumball_machine->reload(gumballs_);
+    m_gumball_machine->TransitionTo(States::NO_QUARTER_STATE);
+}
+
+template<>
+void State<NO_QUARTER_STATE>::restock(data& data_, int gumballs_)
+{
+    std::cout << "You're adding " << gumballs_ << " to the non-empty machine.\n";
+    m_gumball_machine->reload(gumballs_);
+}
 template<>
 void State<NO_QUARTER_STATE>::insertQuarter(data& data_)
 {

@@ -42,8 +42,18 @@ int main()
 
     g2.insertQuarter();
     g2.turnCrank();
+    g2.turnCrank();
+
+
     g2.insertQuarter();
     g2.turnCrank();
+
+    g2.restock(5);
+    g2.insertQuarter();
+    g2.turnCrank();
+    g2.restock(5);
+    g2.insertQuarter();
+    g2.restock(5);
 
 
 	return 0;

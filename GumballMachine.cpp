@@ -72,3 +72,13 @@ void GumballMachine::init()
 {
     m_state = m_states[0];
 }
+
+void GumballMachine::restock(int gumballs_)
+{
+    m_state->restock(m_data,gumballs_);
+}
+
+void GumballMachine::reload(int gumballs_)
+{
+    m_data.gumballs += gumballs_;
+}
