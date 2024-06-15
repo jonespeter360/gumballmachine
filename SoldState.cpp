@@ -5,8 +5,8 @@
 #include "NoQuarterState.h"
 #include <iostream>
 
-SoldState::SoldState(): m_gumball_machine {nullptr} {};
-
+SoldState::SoldState(): m_gumball_machine {nullptr}
+                        m_name {States::SOLD_STATE} {}
 void SoldState::insertQuarter()
 {
     std::cout << "You can't insert a quarter until after your gumball is dispensed.\n";

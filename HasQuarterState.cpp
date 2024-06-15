@@ -6,7 +6,8 @@
 #include "WinnerState.h"
 #include <iostream>
 
-HasQuarterState::HasQuarterState(): m_gumball_machine { nullptr } {}
+HasQuarterState::HasQuarterState(): m_gumball_machine { nullptr }
+                                    m_name {States::HAS_QUARTER_STATE} {}
 
 void HasQuarterState::insertQuarter()
 {

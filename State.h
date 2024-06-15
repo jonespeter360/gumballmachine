@@ -1,6 +1,17 @@
 #ifndef __H_STATE_H
 #define __H_STATE_H
 
+constexpr short int DEFAULT_STATES {5};
+
+enum class States
+{
+    HAS_QUARTER_STATE = 0,
+    NO_QUARTER_STATE = 1,
+    SOLD_OUT_STATE = 2,
+    SOLD_STATE = 4,
+    WINNER_STATE = 8
+};
+
 class GumballMachine;
 
 class State

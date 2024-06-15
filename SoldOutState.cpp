@@ -3,7 +3,8 @@
 #include "SoldOutState.h"
 #include <iostream>
 
-SoldOutState::SoldOutState(): m_gumball_machine {nullptr } {}
+SoldOutState::SoldOutState(): m_gumball_machine {nullptr }
+                              m_name {States::SOLD_OUT_STATE} {}
 
 void SoldOutState::insertQuarter()
 {

@@ -5,7 +5,8 @@
 #include "NoQuarterState.h"
 #include <iostream>
 
-WinnerState::WinnerState() : m_gumball_machine {nullptr} {}
+WinnerState::WinnerState() : m_gumball_machine {nullptr},
+                             m_name {States::WINNER_STATE} {}
 
 void WinnerState::insertQuarter()
 {
