@@ -19,7 +19,7 @@ class GumballMachine_API
         virtual void ejectQuarter() = 0;
         virtual void turnCrank() = 0;
         virtual void restock(int) = 0;
-        virtual ~GumballMachine() {};
+        virtual ~GumballMachine_API() {};
 };
 
 class GumballMachine : public GumballMachine_API
