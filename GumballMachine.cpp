@@ -9,8 +9,7 @@
 
 GumballMachine::GumballMachine(int gumballs_): 
             m_state {nullptr},
-            m_gumballs {gumballs_},
-            m_winner_count {0},
+            m_data {gumballs_,0},
             m_states {}
 {
     m_states.reserve(DEFAULT_STATES);
@@ -50,23 +49,23 @@ void GumballMachine::releaseBall()
     std::cout << "A ball comes rolling out the slot!\n";
     if (count() != 0)
     {
-        m_gumballs -= 1;
+        m_data.gumballs -= 1;
     }
 }
 
 int GumballMachine::count()
 {
-    return m_gumballs;
+    return m_data.gumballs;
 }
 
 int GumballMachine::winner_count()
 {
-    return m_winner_count;
+    return m_data.winner_count;
 }
 
 void GumballMachine::set_winner_count(int in_)
 {
-    m_winner_count = in_;    
+    m_data.winner_count = in_;    
 }
 
 void GumballMachine::init()
@@ -77,7 +76,7 @@ void GumballMachine::init()
     m_states.emplace_back(new SoldState());
     m_states.emplace_back(new WinnerState());
 
-    if (m_gumballs > 0)
+    if (m_data.gumballs > 0)
     {
        TransitionTo(States::NO_QUARTER_STATE);
     }

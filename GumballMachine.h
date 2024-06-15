@@ -5,6 +5,12 @@
 
 class State;
 
+struct data
+{
+    int gumballs;
+    int winner_count;
+};
+
 class GumballMachine
 {
     public:
@@ -21,8 +27,7 @@ class GumballMachine
     private:
         void Initialize();
         State* m_state;
-        int m_gumballs;
-        int m_winner_count;
+        data m_data;
         std::vector<State*> m_states;
 };
 
