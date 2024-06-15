@@ -11,7 +11,17 @@ struct data
     int winner_count;
 };
 
-class GumballMachine
+class GumballMachine_API
+{
+    public:
+        virtual void Initialize() = 0;
+        virtual void insertQuarter() = 0;
+        virtual void ejectQuarter() = 0;
+        virtual void turnCrank() = 0;
+        virtual void restock(int) = 0;
+};
+
+class GumballMachine : public GumballMachine_API
 {
     public:
         GumballMachine(int gumballs_);
