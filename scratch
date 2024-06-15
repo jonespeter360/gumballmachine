@@ -1,0 +1,78 @@
+###
+
+bug:
+
+┌─GumballMachine.cpp───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│        1  #include "State.h"
+│
+│        2  #include "GumballMachine.h"
+│
+│        3  #include "NoQuarterState.h"
+│
+│        4  #include <iostream>
+│
+│        5
+│
+│        6  GumballMachine::GumballMachine(int gumballs_):
+│
+│        7              m_state {nullptr},
+│
+│        8              m_gumballs {gumballs_}
+│
+│        9              {
+│
+│       10                  TransitionTo(new NoQuarterState());
+│
+│       11              }
+│
+│       12  void GumballMachine::TransitionTo(State* state_)
+│
+│       13  {
+│
+│       14      if (m_state != nullptr) delete state_;
+│
+│       15      m_state = state_;
+│
+│  >    16      m_state->set_context(this);
+│
+│       17  }
+│
+│       18  void GumballMachine::insertQuarter()
+│
+│       19  {
+│
+│       20      m_state->insertQuarter();
+│
+│       21  }
+│
+│       22  void GumballMachine::ejectQuarter()
+│
+│       23  {
+│
+│       24      m_state->ejectQuarter();
+│
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+multi-thre Thread 0x7ffff7a4d3 In: GumballMachine::TransitionTo
+L16   PC: 0x5555555552d8
+Argument required (name of window).
+(gdb) r
+The program being debugged has been started already.
+Start it from the beginning? (y or n) yStarting program:
+/home/jonespe/docs/obsidian/state_pattern/main.out
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library
+"/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00005555555552d8 in GumballMachine::TransitionTo
+(this=0x7fffffffdc40, state_=0x55555556c2e0) at
+GumballMachine.cpp:16
+
+(gdb) p this
+$2 = (GumballMachine * const) 0x7fffffffdc40
+
+(gdb) p this
+$3 = (NoQuarterState * const) 0x55555556beb0
+
+(gdb) p this
+$4 = (HasQuarterState * const) 0x55555556c2e0

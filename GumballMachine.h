@@ -13,9 +13,12 @@ class GumballMachine
         void turnCrank();
         void releaseBall();
         int count();
+        int winner_count();
+        void set_winner_count(int in_);
     private:
         State* m_state;
         int m_gumballs;
+        int m_winner_count;
 };
 
 #endif

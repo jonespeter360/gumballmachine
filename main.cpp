@@ -30,5 +30,19 @@ int main()
     g1.insertQuarter();
     g1.turnCrank();
 
+    GumballMachine g2 {14};
+
+    for (int i = 0; i < 12; i++)
+    {
+        g2.insertQuarter();
+        g2.turnCrank();
+    }
+
+    g2.insertQuarter();
+    g2.turnCrank();
+    g2.insertQuarter();
+    g2.turnCrank();
+
+
 	return 0;
 }

@@ -5,7 +5,8 @@
 
 GumballMachine::GumballMachine(int gumballs_): 
             m_state {nullptr},
-            m_gumballs {gumballs_}
+            m_gumballs {gumballs_},
+            m_winner_count {0}
 {
     if (m_gumballs > 0)
     {
@@ -45,4 +46,14 @@ void GumballMachine::releaseBall()
 int GumballMachine::count()
 {
     return m_gumballs;
+}
+
+int GumballMachine::winner_count()
+{
+    return m_winner_count;
+}
+
+void GumballMachine::set_winner_count(int in_)
+{
+    m_winner_count = in_;    
 }
