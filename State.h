@@ -15,22 +15,22 @@ enum States
     WINNER_STATE = 16
 };
 
-class BaseState
+class State_If
 {
     public:
-        BaseState() {};
+        State_If() {};
         virtual void insertQuarter(data&) = 0;
         virtual void ejectQuarter(data&)  = 0;
         virtual void turnCrank(data&)  =  0;
         virtual void dispense(data&)  = 0;
         virtual void set_context(GumballMachine* context_) = 0;
         virtual int get_name() = 0;
-        virtual ~BaseState() {};
+        virtual ~State_If() {};
 };
 
 
 template <const int STATE>
-class State : public BaseState
+class State : public State_If
 {
     public:
         State() { m_name = STATE; };
@@ -198,11 +198,5 @@ void State<SOLD_STATE>::dispense(data& data_)
     }
 }
 
-
-class HasQuarterState : public State<HAS_QUARTER_STATE> {};
-class NoQuarterState : public State<NO_QUARTER_STATE> {};
-class SoldOutState : public State<SOLD_OUT_STATE> {};
-class SoldState : public State<SOLD_STATE> {};
-class WinnerState : public State<WINNER_STATE> {};
 
 #endif

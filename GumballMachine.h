@@ -3,7 +3,7 @@
 
 #include <vector>
 
-class BaseState;
+class State_If;
 
 struct data
 {
@@ -20,13 +20,13 @@ class GumballMachine
         void insertQuarter();
         void ejectQuarter();
         void turnCrank();
-        void releaseBall();
         void TransitionTo(int state_);
+        void releaseBall();
     private:
         void init();
-        BaseState* m_state;
+        State_If* m_state;
         data m_data;
-        std::vector<BaseState*> m_states;
+        std::vector<State_If*> m_states;
 };
 
 #endif
